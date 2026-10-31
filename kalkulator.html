@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+</head>
+<body>
+
+    <h1>Kalkulator</h1>
+
+    <label>Angka 1</label><br>
+    <input type="number" id="angka1" placeholder="Masukkan angka pertama">
+
+    <br><br>
+
+    <label>Angka 2</label><br>
+    <input type="number" id="angka2" placeholder="Masukkan angka kedua">
+
+    <br><br>
+
+    <button onclick="hitung('+')">+</button>
+    <button onclick="hitung('-')">-</button>
+    <button onclick="hitung('*')">×</button>
+    <button onclick="hitung('/')">÷</button>
+
+    <br><br>
+
+    <label>Hasil:</label>
+    <p id="hasil">0</p>
+
+    <button onclick="resetKalkulator()">Reset</button>
+
+    <script>
+        function hitung(operator) {
+            const a = document.getElementById("angka1").value;
+            const b = document.getElementById("angka2").value;
+            const hasil = document.getElementById("hasil");
+
+            if (a === "" || b === "") {
+                hasil.textContent = "Isi kedua angka dahulu!";
+                return;
+            }
+
+            const x = Number(a);
+            const y = Number(b);
+            let total;
+
+            if (operator === "+") {
+                total = x + y;
+            } else if (operator === "-") {
+                total = x - y;
+            } else if (operator === "*") {
+                total = x * y;
+            } else if (operator === "/") {
+                if (y === 0) {
+                    hasil.textContent = "Tidak bisa dibagi 0!";
+                    return;
+                }
+                total = x / y;
+            }
+
+            hasil.textContent = total;
+        }
+
+        function resetKalkulator() {
+            document.getElementById("angka1").value = "";
+            document.getElementById("angka2").value = "";
+            document.getElementById("hasil").textContent = "0";
+        }
+    </script>
+
+</body>
+</html>
